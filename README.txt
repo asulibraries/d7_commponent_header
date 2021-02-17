@@ -26,7 +26,7 @@ that module's settings, as it aggressively overrides spacing rules used
 by the ASU Component Header. Visit /admin/config/administration/admin-menu
 to do that.
 
-All dependencies are packaged within the module, no further libraries to 
+All dependencies are packaged within the module, no further libraries to
 download.
 
 

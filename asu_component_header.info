@@ -5,5 +5,5 @@ package = ASU
 ;dependencies[] = "composer_manager"
 dependencies[] = "cas"
 files[] = asu_component_header.module
-scripts[] = node_modules/@asu-design-system/components-library/dist/vendor.js
-scripts[] = /node_modules/@asu-design-system/components-library/dist/components-library.js
+scripts[] = scripts/vendor.js
+scripts[] = scripts/components-library.js

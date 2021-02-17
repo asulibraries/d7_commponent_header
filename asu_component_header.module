@@ -56,6 +56,26 @@ function asu_component_header_block_info() {
     // so following its lead for now.
     'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['asu_component_header_cda'] = array(
+    'info' => t('ASU Component Header - CDA'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['asu_component_header_fop'] = array(
+    'info' => t('ASU Component Header - Future of Print'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['asu_component_header_hayden2020'] = array(
+    'info' => t('ASU Component Header - Hayden 2020'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['asu_component_header_yog'] = array(
+    'info' => t('ASU Component Header - 100 Grand'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['asu_component_header_mgcc'] = array(
+    'info' => t('ASU Component Header - Mapping Grand Canyon'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
 
   // Footer
   $blocks['asu_component_header_footer'] = array(
@@ -114,6 +134,13 @@ function asu_component_header_block_configure($delta = '') {
       '#description' => t('Optional. URL of the parent unit.'),
       '#required' => FALSE
     );
+    $form['asu_component_header']['asu_component_header_home_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Multisite Home URL'),
+      '#default_value' => variable_get('asu_component_header_home_url'),
+      '#description' => t('Optional. URL to use for Home link if different from main site. Can be /example-page or https://example.com.'),
+      '#required' => FALSE
+    );
 
     $form['asu_component_header']['site_menu'] = array(
       '#type' => 'fieldset',
@@ -157,6 +184,377 @@ function asu_component_header_block_configure($delta = '') {
     );
 
   }
+
+  if ($delta == 'asu_component_header_cda') {
+
+    $form['asu_component_header_cda']['asu_component_header_cda_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Site Name'),
+      '#default_value' => variable_get('asu_component_header_cda_title', variable_get('site_name')),
+      '#description' => t('Site title to appear in the header. Defaults to site name.'),
+      '#required' => TRUE
+    );
+    $form['asu_component_header_cda']['asu_component_header_cda_parent_org'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Unit Name'),
+      '#default_value' => variable_get('asu_component_header_cda_parent_org'),
+      '#description' => t('Optional. Name of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_cda']['asu_component_header_cda_parent_org_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Department URL'),
+      '#default_value' => variable_get('asu_component_header_cda_parent_org_url'),
+      '#description' => t('Optional. URL of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_cda']['asu_component_header_cda_home_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Multisite Home URL'),
+      '#default_value' => variable_get('asu_component_header_cda_home_url'),
+      '#description' => t('Optional. URL to use for Home link if different from main site. Can be /example-page or https://example.com.'),
+      '#required' => FALSE
+    );
+
+    $form['asu_component_header_cda']['site_menu'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Site menu injection'),
+      '#collapsed' => FALSE,
+    );
+
+    $form['asu_component_header_cda']['site_menu']['asu_component_header_cda_sitemenu_injection_flag'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Append local site menu into ASU header menu and display in responsive state.'),
+      '#default_value' => variable_get('asu_component_header_cda_sitemenu_injection_flag', 1),
+    );
+
+    $form['asu_component_header_cda']['site_menu']['asu_component_header_cda_sitemenu_name'] = array(
+      '#type' => 'select',
+      '#title' => t('Menu to inject'),
+      '#description' => t('Select the site menu to inject.'),
+      '#options' => asu_component_header_get_site_menu_options(),
+      '#default_value' => variable_get('asu_component_header_cda_sitemenu_name', 'main-menu'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="asu_component_header_cda_sitemenu_injection_flag"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
+    $form['asu_component_header_cda']['asu_component_header_cda_login_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Login URL'),
+      '#default_value' => variable_get('asu_component_header_cda_login_url', '/cas'),
+      '#description' => t('Login URL for site.'),
+      '#required' => TRUE
+    );
+
+    $form['asu_component_header_cda']['asu_component_header_cda_logout_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Logout URL'),
+      '#default_value' => variable_get('asu_component_header_cda_logout_url', '/caslogout'),
+      '#description' => t('Logout URL for site.'),
+      '#required' => TRUE
+    );
+
+  }
+
+  if ($delta == 'asu_component_header_fop') {
+
+    $form['asu_component_header_fop']['asu_component_header_fop_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Site Name'),
+      '#default_value' => variable_get('asu_component_header_fop_title', variable_get('site_name')),
+      '#description' => t('Site title to appear in the header. Defaults to site name.'),
+      '#required' => TRUE
+    );
+    $form['asu_component_header_fop']['asu_component_header_fop_parent_org'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Unit Name'),
+      '#default_value' => variable_get('asu_component_header_fop_parent_org'),
+      '#description' => t('Optional. Name of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_fop']['asu_component_header_fop_parent_org_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Department URL'),
+      '#default_value' => variable_get('asu_component_header_fop_parent_org_url'),
+      '#description' => t('Optional. URL of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_fop']['asu_component_header_fop_home_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Multisite Home URL'),
+      '#default_value' => variable_get('asu_component_header_fop_home_url'),
+      '#description' => t('Optional. URL to use for Home link if different from main site. Can be /example-page or https://example.com.'),
+      '#required' => FALSE
+    );
+
+    $form['asu_component_header_fop']['site_menu'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Site menu injection'),
+      '#collapsed' => FALSE,
+    );
+
+    $form['asu_component_header_fop']['site_menu']['asu_component_header_fop_sitemenu_injection_flag'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Append local site menu into ASU header menu and display in responsive state.'),
+      '#default_value' => variable_get('asu_component_header_fop_sitemenu_injection_flag', 1),
+    );
+
+    $form['asu_component_header_fop']['site_menu']['asu_component_header_fop_sitemenu_name'] = array(
+      '#type' => 'select',
+      '#title' => t('Menu to inject'),
+      '#description' => t('Select the site menu to inject.'),
+      '#options' => asu_component_header_get_site_menu_options(),
+      '#default_value' => variable_get('asu_component_header_fop_sitemenu_name', 'main-menu'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="asu_component_header_fop_sitemenu_injection_flag"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
+    $form['asu_component_header_fop']['asu_component_header_fop_login_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Login URL'),
+      '#default_value' => variable_get('asu_component_header_fop_login_url', '/cas'),
+      '#description' => t('Login URL for site.'),
+      '#required' => TRUE
+    );
+
+    $form['asu_component_header_fop']['asu_component_header_fop_logout_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Logout URL'),
+      '#default_value' => variable_get('asu_component_header_fop_logout_url', '/caslogout'),
+      '#description' => t('Logout URL for site.'),
+      '#required' => TRUE
+    );
+
+  }
+
+  if ($delta == 'asu_component_header_hayden2020') {
+
+    $form['asu_component_header_hayden2020']['asu_component_header_hayden2020_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Site Name'),
+      '#default_value' => variable_get('asu_component_header_hayden2020_title', variable_get('site_name')),
+      '#description' => t('Site title to appear in the header. Defaults to site name.'),
+      '#required' => TRUE
+    );
+    $form['asu_component_header_hayden2020']['asu_component_header_hayden2020_parent_org'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Unit Name'),
+      '#default_value' => variable_get('asu_component_header_hayden2020_parent_org'),
+      '#description' => t('Optional. Name of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_hayden2020']['asu_component_header_hayden2020_parent_org_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Department URL'),
+      '#default_value' => variable_get('asu_component_header_hayden2020_parent_org_url'),
+      '#description' => t('Optional. URL of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_hayden2020']['asu_component_header_hayden2020_home_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Multisite Home URL'),
+      '#default_value' => variable_get('asu_component_header_hayden2020_home_url'),
+      '#description' => t('Optional. URL to use for Home link if different from main site. Can be /example-page or https://example.com.'),
+      '#required' => FALSE
+    );
+
+    $form['asu_component_header_hayden2020']['site_menu'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Site menu injection'),
+      '#collapsed' => FALSE,
+    );
+
+    $form['asu_component_header_hayden2020']['site_menu']['asu_component_header_hayden2020_sitemenu_injection_flag'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Append local site menu into ASU header menu and display in responsive state.'),
+      '#default_value' => variable_get('asu_component_header_hayden2020_sitemenu_injection_flag', 1),
+    );
+
+    $form['asu_component_header_hayden2020']['site_menu']['asu_component_header_hayden2020_sitemenu_name'] = array(
+      '#type' => 'select',
+      '#title' => t('Menu to inject'),
+      '#description' => t('Select the site menu to inject.'),
+      '#options' => asu_component_header_get_site_menu_options(),
+      '#default_value' => variable_get('asu_component_header_hayden2020_sitemenu_name', 'main-menu'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="asu_component_header_hayden2020_sitemenu_injection_flag"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
+    $form['asu_component_header_hayden2020']['asu_component_header_hayden2020_login_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Login URL'),
+      '#default_value' => variable_get('asu_component_header_hayden2020_login_url', '/cas'),
+      '#description' => t('Login URL for site.'),
+      '#required' => TRUE
+    );
+
+    $form['asu_component_header_hayden2020']['asu_component_header_hayden2020_logout_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Logout URL'),
+      '#default_value' => variable_get('asu_component_header_hayden2020_logout_url', '/caslogout'),
+      '#description' => t('Logout URL for site.'),
+      '#required' => TRUE
+    );
+
+  }
+
+  if ($delta == 'asu_component_header_yog') {
+
+    $form['asu_component_header_yog']['asu_component_header_yog_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Site Name'),
+      '#default_value' => variable_get('asu_component_header_yog_title', variable_get('site_name')),
+      '#description' => t('Site title to appear in the header. Defaults to site name.'),
+      '#required' => TRUE
+    );
+    $form['asu_component_header_yog']['asu_component_header_yog_parent_org'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Unit Name'),
+      '#default_value' => variable_get('asu_component_header_yog_parent_org'),
+      '#description' => t('Optional. Name of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_yog']['asu_component_header_yog_parent_org_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Department URL'),
+      '#default_value' => variable_get('asu_component_header_yog_parent_org_url'),
+      '#description' => t('Optional. URL of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_yog']['asu_component_header_yog_home_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Multisite Home URL'),
+      '#default_value' => variable_get('asu_component_header_yog_home_url'),
+      '#description' => t('Optional. URL to use for Home link if different from main site. Can be /example-page or https://example.com.'),
+      '#required' => FALSE
+    );
+
+    $form['asu_component_header_yog']['site_menu'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Site menu injection'),
+      '#collapsed' => FALSE,
+    );
+
+    $form['asu_component_header_yog']['site_menu']['asu_component_header_yog_sitemenu_injection_flag'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Append local site menu into ASU header menu and display in responsive state.'),
+      '#default_value' => variable_get('asu_component_header_yog_sitemenu_injection_flag', 1),
+    );
+
+    $form['asu_component_header_yog']['site_menu']['asu_component_header_yog_sitemenu_name'] = array(
+      '#type' => 'select',
+      '#title' => t('Menu to inject'),
+      '#description' => t('Select the site menu to inject.'),
+      '#options' => asu_component_header_get_site_menu_options(),
+      '#default_value' => variable_get('asu_component_header_yog_sitemenu_name', 'main-menu'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="asu_component_header_yog_sitemenu_injection_flag"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
+    $form['asu_component_header_yog']['asu_component_header_yog_login_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Login URL'),
+      '#default_value' => variable_get('asu_component_header_yog_login_url', '/cas'),
+      '#description' => t('Login URL for site.'),
+      '#required' => TRUE
+    );
+
+    $form['asu_component_header_yog']['asu_component_header_yog_logout_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Logout URL'),
+      '#default_value' => variable_get('asu_component_header_yog_logout_url', '/caslogout'),
+      '#description' => t('Logout URL for site.'),
+      '#required' => TRUE
+    );
+
+  }
+
+  if ($delta == 'asu_component_header_mgcc') {
+
+    $form['asu_component_header_mgcc']['asu_component_header_mgcc_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Site Name'),
+      '#default_value' => variable_get('asu_component_header_mgcc_title', variable_get('site_name')),
+      '#description' => t('Site title to appear in the header. Defaults to site name.'),
+      '#required' => TRUE
+    );
+    $form['asu_component_header_mgcc']['asu_component_header_mgcc_parent_org'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Unit Name'),
+      '#default_value' => variable_get('asu_component_header_mgcc_parent_org'),
+      '#description' => t('Optional. Name of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_mgcc']['asu_component_header_mgcc_parent_org_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Parent Department URL'),
+      '#default_value' => variable_get('asu_component_header_mgcc_parent_org_url'),
+      '#description' => t('Optional. URL of the parent unit.'),
+      '#required' => FALSE
+    );
+    $form['asu_component_header_mgcc']['asu_component_header_mgcc_home_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Multisite Home URL'),
+      '#default_value' => variable_get('asu_component_header_mgcc_home_url'),
+      '#description' => t('Optional. URL to use for Home link if different from main site. Can be /example-page or https://example.com.'),
+      '#required' => FALSE
+    );
+
+    $form['asu_component_header_mgcc']['site_menu'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Site menu injection'),
+      '#collapsed' => FALSE,
+    );
+
+    $form['asu_component_header_mgcc']['site_menu']['asu_component_header_mgcc_sitemenu_injection_flag'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Append local site menu into ASU header menu and display in responsive state.'),
+      '#default_value' => variable_get('asu_component_header_mgcc_sitemenu_injection_flag', 1),
+    );
+
+    $form['asu_component_header_mgcc']['site_menu']['asu_component_header_mgcc_sitemenu_name'] = array(
+      '#type' => 'select',
+      '#title' => t('Menu to inject'),
+      '#description' => t('Select the site menu to inject.'),
+      '#options' => asu_component_header_get_site_menu_options(),
+      '#default_value' => variable_get('asu_component_header_mgcc_sitemenu_name', 'main-menu'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="asu_component_header_mgcc_sitemenu_injection_flag"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
+    $form['asu_component_header_mgcc']['asu_component_mgcc_login_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Login URL'),
+      '#default_value' => variable_get('asu_component_header_mgcc_login_url', '/cas'),
+      '#description' => t('Login URL for site.'),
+      '#required' => TRUE
+    );
+
+    $form['asu_component_header_mgcc']['asu_component_header_mgcc_logout_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Logout URL'),
+      '#default_value' => variable_get('asu_component_header_mgcc_logout_url', '/caslogout'),
+      '#description' => t('Logout URL for site.'),
+      '#required' => TRUE
+    );
+
+  }
+
   return $form;
 }
 
@@ -174,10 +572,66 @@ function asu_component_header_block_save($delta = '', $edit = array()) {
     variable_set('asu_component_header_title', $edit['asu_component_header_title']);
     variable_set('asu_component_header_parent_org', $edit['asu_component_header_parent_org']);
     variable_set('asu_component_header_parent_org_url', $edit['asu_component_header_parent_org_url']);
+    variable_set('asu_component_header_home_url', $edit['asu_component_header_home_url']);
     variable_set('asu_component_header_sitemenu_injection_flag', $edit['asu_component_header_sitemenu_injection_flag']);
     variable_set('asu_component_header_sitemenu_name', $edit['asu_component_header_sitemenu_name']);
     variable_set('asu_component_header_login_url', $edit['asu_component_header_login_url']);
     variable_set('asu_component_header_logout_url', $edit['asu_component_header_logout_url']);
+  }
+  if ($delta == 'asu_component_header_cda') {
+    // Have Drupal save the string to the database.
+    variable_set('asu_component_header_cda_title', $edit['asu_component_header_cda_title']);
+    variable_set('asu_component_header_cda_parent_org', $edit['asu_component_header_cda_parent_org']);
+    variable_set('asu_component_header_cda_parent_org_url', $edit['asu_component_header_cda_parent_org_url']);
+    variable_set('asu_component_header_cda_home_url', $edit['asu_component_header_cda_home_url']);
+    variable_set('asu_component_header_cda_sitemenu_injection_flag', $edit['asu_component_header_cda_sitemenu_injection_flag']);
+    variable_set('asu_component_header_cda_sitemenu_name', $edit['asu_component_header_cda_sitemenu_name']);
+    variable_set('asu_component_header_cda_login_url', $edit['asu_component_header_cda_login_url']);
+    variable_set('asu_component_header_cda_logout_url', $edit['asu_component_header_cda_logout_url']);
+  }
+  if ($delta == 'asu_component_header_fop') {
+    // Have Drupal save the string to the database.
+    variable_set('asu_component_header_fop_title', $edit['asu_component_header_fop_title']);
+    variable_set('asu_component_header_fop_parent_org', $edit['asu_component_header_fop_parent_org']);
+    variable_set('asu_component_header_fop_parent_org_url', $edit['asu_component_header_fop_parent_org_url']);
+    variable_set('asu_component_header_fop_home_url', $edit['asu_component_header_fop_home_url']);
+    variable_set('asu_component_header_fop_sitemenu_injection_flag', $edit['asu_component_header_fop_sitemenu_injection_flag']);
+    variable_set('asu_component_header_fop_sitemenu_name', $edit['asu_component_header_fop_sitemenu_name']);
+    variable_set('asu_component_header_fop_login_url', $edit['asu_component_header_fop_login_url']);
+    variable_set('asu_component_header_fop_logout_url', $edit['asu_component_header_fop_logout_url']);
+  }
+  if ($delta == 'asu_component_header_hayden2020') {
+    // Have Drupal save the string to the database.
+    variable_set('asu_component_header_hayden2020_title', $edit['asu_component_header_hayden2020_title']);
+    variable_set('asu_component_header_hayden2020_parent_org', $edit['asu_component_header_hayden2020_parent_org']);
+    variable_set('asu_component_header_hayden2020_parent_org_url', $edit['asu_component_header_hayden2020_parent_org_url']);
+    variable_set('asu_component_header_hayden2020_home_url', $edit['asu_component_header_hayden2020_home_url']);
+    variable_set('asu_component_header_hayden2020_sitemenu_injection_flag', $edit['asu_component_header_hayden2020_sitemenu_injection_flag']);
+    variable_set('asu_component_header_hayden2020_sitemenu_name', $edit['asu_component_header_hayden2020_sitemenu_name']);
+    variable_set('asu_component_header_hayden2020_login_url', $edit['asu_component_header_hayden2020_login_url']);
+    variable_set('asu_component_header_hayden2020_logout_url', $edit['asu_component_header_hayden2020_logout_url']);
+  }
+  if ($delta == 'asu_component_header_yog') {
+    // Have Drupal save the string to the database.
+    variable_set('asu_component_header_yog_title', $edit['asu_component_header_yog_title']);
+    variable_set('asu_component_header_yog_parent_org', $edit['asu_component_header_yog_parent_org']);
+    variable_set('asu_component_header_yog_parent_org_url', $edit['asu_component_header_yog_parent_org_url']);
+    variable_set('asu_component_header_yog_home_url', $edit['asu_component_header_yog_home_url']);
+    variable_set('asu_component_header_yog_sitemenu_injection_flag', $edit['asu_component_header_yog_sitemenu_injection_flag']);
+    variable_set('asu_component_header_yog_sitemenu_name', $edit['asu_component_header_yog_sitemenu_name']);
+    variable_set('asu_component_header_yog_login_url', $edit['asu_component_header_yog_login_url']);
+    variable_set('asu_component_header_yog_logout_url', $edit['asu_component_header_yog_logout_url']);
+  }
+  if ($delta == 'asu_component_header_mgcc') {
+    // Have Drupal save the string to the database.
+    variable_set('asu_component_header_mgcc_title', $edit['asu_component_header_mgcc_title']);
+    variable_set('asu_component_header_mgcc_parent_org', $edit['asu_component_header_mgcc_parent_org']);
+    variable_set('asu_component_header_mgcc_parent_org_url', $edit['asu_component_header_mgcc_parent_org_url']);
+    variable_set('asu_component_header_mgcc_home_url', $edit['asu_component_header_mgcc_home_url']);
+    variable_set('asu_component_header_mgcc_sitemenu_injection_flag', $edit['asu_component_header_mgcc_sitemenu_injection_flag']);
+    variable_set('asu_component_header_mgcc_sitemenu_name', $edit['asu_component_header_mgcc_sitemenu_name']);
+    variable_set('asu_component_header_mgcc_login_url', $edit['asu_component_header_mgcc_login_url']);
+    variable_set('asu_component_header_mgcc_logout_url', $edit['asu_component_header_mgcc_logout_url']);
   }
 }
 
@@ -190,6 +644,11 @@ function asu_component_header_block_view($delta = '') {
   // The $delta parameter tells us which block is being requested.
   switch ($delta) {
     case 'asu_component_header_block':
+    case 'asu_component_header_cda':
+    case 'asu_component_header_hayden2020':
+    case 'asu_component_header_fop':
+    case 'asu_component_header_yog':
+    case 'asu_component_header_mgcc':
       // The subject is displayed at the top of the block. Note that it
       // should be passed through t() for translation. The title configured
       // for the block using Drupal UI supercedes this one.
@@ -216,15 +675,73 @@ function asu_component_header_block_view($delta = '') {
 function asu_component_header_contents($which_block) {
   switch ($which_block) {
     case 'asu_component_header_block':
+    case 'asu_component_header_cda':
+    case 'asu_component_header_hayden2020':
+    case 'asu_component_header_fop':
+    case 'asu_component_header_yog':
+    case 'asu_component_header_mgcc':
 
       // Get settings.
-      $header_title = variable_get('asu_component_header_title', variable_get('site_name'));
-      $header_parent_org = variable_get('asu_component_header_parent_org', null);
-      $header_parent_org_url = variable_get('asu_component_header_parent_org_url', null);
-      $header_inject_menu = variable_get('asu_component_header_sitemenu_injection_flag', 1);
-      $header_menu_name = variable_get('asu_component_header_sitemenu_name', 'main-menu');
-      $header_login_url = variable_get('asu_component_header_login_url', '/cas');
-      $header_logout_url = variable_get('asu_component_header_logout_url', '/caslogout');
+      if ($which_block == 'asu_component_header_block') {
+        $header_title = variable_get('asu_component_header_title', variable_get('site_name'));
+        $header_parent_org = variable_get('asu_component_header_parent_org', null);
+        $header_parent_org_url = variable_get('asu_component_header_parent_org_url', null);
+        $header_home_url = variable_get('asu_component_header_home_url', null);
+        $header_inject_menu = variable_get('asu_component_header_sitemenu_injection_flag', 1);
+        $header_menu_name = variable_get('asu_component_header_sitemenu_name', 'main-menu');
+        $header_login_url = variable_get('asu_component_header_login_url', '/cas');
+        $header_logout_url = variable_get('asu_component_header_logout_url', '/caslogout');
+      }
+      if ($which_block == 'asu_component_header_cda') {
+        $header_title = variable_get('asu_component_header_cda_title', variable_get('site_name'));
+        $header_parent_org = variable_get('asu_component_header_cda_parent_org', null);
+        $header_parent_org_url = variable_get('asu_component_header_cda_parent_org_url', null);
+        $header_home_url = variable_get('asu_component_header_cda_home_url', null);
+        $header_inject_menu = variable_get('asu_component_header_cda_sitemenu_injection_flag', 1);
+        $header_menu_name = variable_get('asu_component_header_cda_sitemenu_name', 'main-menu');
+        $header_login_url = variable_get('asu_component_header_cda_login_url', '/cas');
+        $header_logout_url = variable_get('asu_component_header_cda_logout_url', '/caslogout');
+      }
+    if ($which_block == 'asu_component_header_fop') {
+      $header_title = variable_get('asu_component_header_fop_title', variable_get('site_name'));
+      $header_parent_org = variable_get('asu_component_header_fop_parent_org', null);
+      $header_parent_org_url = variable_get('asu_component_header_fop_parent_org_url', null);
+      $header_home_url = variable_get('asu_component_header_fop_home_url', null);
+      $header_inject_menu = variable_get('asu_component_header_fop_sitemenu_injection_flag', 1);
+      $header_menu_name = variable_get('asu_component_header_fop_sitemenu_name', 'main-menu');
+      $header_login_url = variable_get('asu_component_header_fop_login_url', '/cas');
+      $header_logout_url = variable_get('asu_component_header_fop_logout_url', '/caslogout');
+    }
+    if ($which_block == 'asu_component_header_hayden2020') {
+      $header_title = variable_get('asu_component_header_hayden2020_title', variable_get('site_name'));
+      $header_parent_org = variable_get('asu_component_header_hayden2020_parent_org', null);
+      $header_parent_org_url = variable_get('asu_component_header_hayden2020_parent_org_url', null);
+      $header_home_url = variable_get('asu_component_header_hayden2020_home_url', null);
+      $header_inject_menu = variable_get('asu_component_header_hayden2020_sitemenu_injection_flag', 1);
+      $header_menu_name = variable_get('asu_component_header_hayden2020_sitemenu_name', 'main-menu');
+      $header_login_url = variable_get('asu_component_header_hayden2020_login_url', '/cas');
+      $header_logout_url = variable_get('asu_component_header_hayden2020_logout_url', '/caslogout');
+    }
+    if ($which_block == 'asu_component_header_yog') {
+      $header_title = variable_get('asu_component_header_yog_title', variable_get('site_name'));
+      $header_parent_org = variable_get('asu_component_header_yog_parent_org', null);
+      $header_parent_org_url = variable_get('asu_component_header_yog_parent_org_url', null);
+      $header_home_url = variable_get('asu_component_header_yog_home_url', null);
+      $header_inject_menu = variable_get('asu_component_header_yog_sitemenu_injection_flag', 1);
+      $header_menu_name = variable_get('asu_component_header_yog_sitemenu_name', 'main-menu');
+      $header_login_url = variable_get('asu_component_header_yog_login_url', '/cas');
+      $header_logout_url = variable_get('asu_component_header_yog_logout_url', '/caslogout');
+    }
+    if ($which_block == 'asu_component_header_mgcc') {
+      $header_title = variable_get('asu_component_header_mgcc_title', variable_get('site_name'));
+      $header_parent_org = variable_get('asu_component_header_mgcc_parent_org', null);
+      $header_parent_org_url = variable_get('asu_component_header_mgcc_parent_org_url', null);
+      $header_home_url = variable_get('asu_component_header_mgcc_home_url', null);
+      $header_inject_menu = variable_get('asu_component_header_mgcc_sitemenu_injection_flag', 1);
+      $header_menu_name = variable_get('asu_component_header_mgcc_sitemenu_name', 'main-menu');
+      $header_login_url = variable_get('asu_component_header_mgcc_login_url', '/cas');
+      $header_logout_url = variable_get('asu_component_header_mgcc_logout_url', '/caslogout');
+    }
 
       // Modules would typically perform some database queries to fetch the
       // content for their blocks. Here, we'll just use the variable set in the
@@ -241,13 +758,14 @@ function asu_component_header_contents($which_block) {
          'baseUrl' => base_path(),
          'parentOrg' => $header_parent_org,
          'parentOrgUrl' => $header_parent_org_url,
+         'homeUrl' => $header_home_url,
          'loginLink' => $header_login_url,
          'logoutLink' => $header_logout_url,
       );
       // If we are injecting the menu, add it to params.
       if ($header_inject_menu) {
         // Get and build nav tree.
-        $nav_tree = asu_component_header_get_nav_tree();
+        $nav_tree = asu_component_header_get_nav_tree($which_block);
         $header_props['navTree'] = $nav_tree;
       }
 
@@ -257,7 +775,7 @@ function asu_component_header_contents($which_block) {
       $acct = $user;
       if ($acct->uid > 0) { // User is logged in
         $header_props['loggedIn'] = TRUE;
-        // If we have the SSONAME cookie, use that name. Fallback to 
+        // If we have the SSONAME cookie, use that name. Fallback to
         // ASURITE/username. See also JS solve we have as a backup for
         // when Pantheon strips cookies, below in drupal_add_js().
         $header_props['userName'] = isset($_COOKIE['SSONAME']) ? check_plain($_COOKIE['SSONAME']) : $acct->name;
@@ -368,13 +886,42 @@ function asu_component_header_get_site_menu_options() {
 /**
  * Helper function to build and deliver the nav tree for the header menu.
  */
-function asu_component_header_get_nav_tree() {
-  $menu_name = variable_get('asu_component_header_sitemenu_name', 'main-menu');
+function asu_component_header_get_nav_tree($which_block) {
+  // Get settings
+  if ($which_block == 'asu_component_header_block') {
+    $menu_name = variable_get('asu_component_header_sitemenu_name', 'main-menu');
+    $home_url = variable_get('asu_component_header_home_url', null);
+  }
+  if ($which_block == 'asu_component_header_cda') {
+    $menu_name = variable_get('asu_component_header_cda_sitemenu_name', 'main-menu');
+    $home_url = variable_get('asu_component_header_cda_home_url', null);
+  }
+  if ($which_block == 'asu_component_header_fop') {
+    $menu_name = variable_get('asu_component_header_fop_sitemenu_name', 'main-menu');
+    $home_url = variable_get('asu_component_header_fop_home_url', null);
+  }
+  if ($which_block == 'asu_component_header_hayden2020') {
+    $menu_name = variable_get('asu_component_header_hayden2020_sitemenu_name', 'main-menu');
+    $home_url = variable_get('asu_component_header_hayden2020_home_url', null);
+  }
+  if ($which_block == 'asu_component_header_yog') {
+    $menu_name = variable_get('asu_component_header_yog_sitemenu_name', 'main-menu');
+    $home_url = variable_get('asu_component_header_yog_home_url', null);
+  }
+  if ($which_block == 'asu_component_header_mgcc') {
+    $menu_name = variable_get('asu_component_header_mgcc_sitemenu_name', 'main-menu');
+    $home_url = variable_get('asu_component_header_mgcc_home_url', null);
+  }
+
   // Render array, so values should be safe.
   $menu_tree = menu_tree_all_data($menu_name);
 
   $nav_tree = [ new \stdClass() ];
-  $nav_tree[0]->href = base_path();
+  if ($home_url != null) {
+    $nav_tree[0]->href = $home_url;
+  } else {
+    $nav_tree[0]->href = base_path();
+  }
   $nav_tree[0]->text = t('Home');
   $nav_tree[0]->type = 'icon';
   $nav_tree[0]->class = 'home';

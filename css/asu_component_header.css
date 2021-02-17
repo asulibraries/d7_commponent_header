@@ -1,6 +1,8 @@
 body {
   /* Force the page content down to accommodate the header. May need to adjust based on your theme. */
-  margin-top: 158px !important;
+  /*margin-top: 158px !important;*/
+  margin-top: 145px !important; /* Margin for ASU Library theme */
+
 }
 
 .navbar-brand { /* Tweak for alignment issue between header and footer and content */
