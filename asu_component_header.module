@@ -702,46 +702,51 @@ function asu_component_header_contents($which_block) {
         $header_login_url = variable_get('asu_component_header_cda_login_url', '/cas');
         $header_logout_url = variable_get('asu_component_header_cda_logout_url', '/caslogout');
       }
-    if ($which_block == 'asu_component_header_fop') {
-      $header_title = variable_get('asu_component_header_fop_title', variable_get('site_name'));
-      $header_parent_org = variable_get('asu_component_header_fop_parent_org', null);
-      $header_parent_org_url = variable_get('asu_component_header_fop_parent_org_url', null);
-      $header_home_url = variable_get('asu_component_header_fop_home_url', null);
-      $header_inject_menu = variable_get('asu_component_header_fop_sitemenu_injection_flag', 1);
-      $header_menu_name = variable_get('asu_component_header_fop_sitemenu_name', 'main-menu');
-      $header_login_url = variable_get('asu_component_header_fop_login_url', '/cas');
-      $header_logout_url = variable_get('asu_component_header_fop_logout_url', '/caslogout');
-    }
-    if ($which_block == 'asu_component_header_hayden2020') {
-      $header_title = variable_get('asu_component_header_hayden2020_title', variable_get('site_name'));
-      $header_parent_org = variable_get('asu_component_header_hayden2020_parent_org', null);
-      $header_parent_org_url = variable_get('asu_component_header_hayden2020_parent_org_url', null);
-      $header_home_url = variable_get('asu_component_header_hayden2020_home_url', null);
-      $header_inject_menu = variable_get('asu_component_header_hayden2020_sitemenu_injection_flag', 1);
-      $header_menu_name = variable_get('asu_component_header_hayden2020_sitemenu_name', 'main-menu');
-      $header_login_url = variable_get('asu_component_header_hayden2020_login_url', '/cas');
-      $header_logout_url = variable_get('asu_component_header_hayden2020_logout_url', '/caslogout');
-    }
-    if ($which_block == 'asu_component_header_yog') {
-      $header_title = variable_get('asu_component_header_yog_title', variable_get('site_name'));
-      $header_parent_org = variable_get('asu_component_header_yog_parent_org', null);
-      $header_parent_org_url = variable_get('asu_component_header_yog_parent_org_url', null);
-      $header_home_url = variable_get('asu_component_header_yog_home_url', null);
-      $header_inject_menu = variable_get('asu_component_header_yog_sitemenu_injection_flag', 1);
-      $header_menu_name = variable_get('asu_component_header_yog_sitemenu_name', 'main-menu');
-      $header_login_url = variable_get('asu_component_header_yog_login_url', '/cas');
-      $header_logout_url = variable_get('asu_component_header_yog_logout_url', '/caslogout');
-    }
-    if ($which_block == 'asu_component_header_mgcc') {
-      $header_title = variable_get('asu_component_header_mgcc_title', variable_get('site_name'));
-      $header_parent_org = variable_get('asu_component_header_mgcc_parent_org', null);
-      $header_parent_org_url = variable_get('asu_component_header_mgcc_parent_org_url', null);
-      $header_home_url = variable_get('asu_component_header_mgcc_home_url', null);
-      $header_inject_menu = variable_get('asu_component_header_mgcc_sitemenu_injection_flag', 1);
-      $header_menu_name = variable_get('asu_component_header_mgcc_sitemenu_name', 'main-menu');
-      $header_login_url = variable_get('asu_component_header_mgcc_login_url', '/cas');
-      $header_logout_url = variable_get('asu_component_header_mgcc_logout_url', '/caslogout');
-    }
+      if ($which_block == 'asu_component_header_fop') {
+        $header_title = variable_get('asu_component_header_fop_title', variable_get('site_name'));
+        $header_parent_org = variable_get('asu_component_header_fop_parent_org', null);
+        $header_parent_org_url = variable_get('asu_component_header_fop_parent_org_url', null);
+        $header_home_url = variable_get('asu_component_header_fop_home_url', null);
+        $header_inject_menu = variable_get('asu_component_header_fop_sitemenu_injection_flag', 1);
+        $header_menu_name = variable_get('asu_component_header_fop_sitemenu_name', 'main-menu');
+        $header_login_url = variable_get('asu_component_header_fop_login_url', '/cas');
+        $header_logout_url = variable_get('asu_component_header_fop_logout_url', '/caslogout');
+      }
+      if ($which_block == 'asu_component_header_hayden2020') {
+        $header_title = variable_get('asu_component_header_hayden2020_title', variable_get('site_name'));
+        $header_parent_org = variable_get('asu_component_header_hayden2020_parent_org', null);
+        $header_parent_org_url = variable_get('asu_component_header_hayden2020_parent_org_url', null);
+        $header_home_url = variable_get('asu_component_header_hayden2020_home_url', null);
+        $header_inject_menu = variable_get('asu_component_header_hayden2020_sitemenu_injection_flag', 1);
+        $header_menu_name = variable_get('asu_component_header_hayden2020_sitemenu_name', 'main-menu');
+        $header_login_url = variable_get('asu_component_header_hayden2020_login_url', '/cas');
+        $header_logout_url = variable_get('asu_component_header_hayden2020_logout_url', '/caslogout');
+      }
+      if ($which_block == 'asu_component_header_yog') {
+        $header_title = variable_get('asu_component_header_yog_title', variable_get('site_name'));
+        $header_parent_org = variable_get('asu_component_header_yog_parent_org', null);
+        $header_parent_org_url = variable_get('asu_component_header_yog_parent_org_url', null);
+        $header_home_url = variable_get('asu_component_header_yog_home_url', null);
+        $header_inject_menu = variable_get('asu_component_header_yog_sitemenu_injection_flag', 1);
+        $header_menu_name = variable_get('asu_component_header_yog_sitemenu_name', 'main-menu');
+        $header_login_url = variable_get('asu_component_header_yog_login_url', '/cas');
+        $header_logout_url = variable_get('asu_component_header_yog_logout_url', '/caslogout');
+      }
+      if ($which_block == 'asu_component_header_mgcc') {
+        $header_title = variable_get('asu_component_header_mgcc_title', variable_get('site_name'));
+        $header_parent_org = variable_get('asu_component_header_mgcc_parent_org', null);
+        $header_parent_org_url = variable_get('asu_component_header_mgcc_parent_org_url', null);
+        $header_home_url = variable_get('asu_component_header_mgcc_home_url', null);
+        $header_inject_menu = variable_get('asu_component_header_mgcc_sitemenu_injection_flag', 1);
+        $header_menu_name = variable_get('asu_component_header_mgcc_sitemenu_name', 'main-menu');
+        $header_login_url = variable_get('asu_component_header_mgcc_login_url', '/cas');
+        $header_logout_url = variable_get('asu_component_header_mgcc_logout_url', '/caslogout');
+      }
+
+      // This module doesn't pay attention to CAS settings so
+      // add originating page as destination to login URL.
+      $path = request_path();
+      $header_login_url = $header_login_url . '?destination=' . $path;
 
       // Modules would typically perform some database queries to fetch the
       // content for their blocks. Here, we'll just use the variable set in the
