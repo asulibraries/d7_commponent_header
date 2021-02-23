@@ -746,7 +746,9 @@ function asu_component_header_contents($which_block) {
       // This module doesn't pay attention to CAS settings so
       // add originating page as destination to login URL.
       $path = request_path();
-      $header_login_url = $header_login_url . '?destination=' . $path;
+      if (!empty($path)) {
+        $header_login_url = $header_login_url . '?destination=' . $path;
+      }
 
       // Modules would typically perform some database queries to fetch the
       // content for their blocks. Here, we'll just use the variable set in the
